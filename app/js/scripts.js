@@ -1,263 +1,307 @@
-var testingArray = [
-    "24-7 Intouch",
-    "A&T Ascension Consulting Inc",
-    "ACD Direct",
-    "AGR Group",
-    "ARC Management Group",
-    "ARCSmart Solutions",
-    "AW Companies Inc",
-    "Adentcom S de RL de CV",
-    "Advensus",
-    "Agents Republic",
-    "Akorbi",
-    "AlfredoTest",
-    "Alliance DMS Inc",
-    "Allied Customer Solutions",
-    "Allied Global",
-    "AmeeraTel",
-    "American Customer Care",
-    "American Help Desk",
-    "Ameridial Inc",
-    "Ansafone Contact Centers",
-    "AnswerNet Inc",
-    "Aptitude 360 Inc",
-    "Argo ITC",
-    "Axion Contact",
-    "Azpired",
-    "BDO Esnad",
-    "BPO Centers",
-    "Barrister Global Services Network Inc",
-    "Bellsystem24Hoasao",
-    "Bill Gosling Outsourcing",
-    "Blake and Associates Holdings (Pty) Ltd",
-    "Boomerang SA",
-    "Bosch",
-    "Business and Consumer Choices Telemarketing Ltd",
-    "Buwelo",
-    "CC Capital Group",
-    "CCB Credit Services",
-    "CCI Mauritius Limited",
-    "CCI Systems Inc",
-    "CCIG Group",
-    "CNM BPO Solutions",
-    "CSS Corp",
-    "CTC TeleServices",
-    "Calibrus Call Center Services LLC",
-    "California Marketing Group",
-    "Call 4 Health",
-    "Call Center Services International",
-    "Call Zilla",
-    "Caribbean Contact Center",
-    "Cati Call Center",
-    "Cebu Tele-net Philippines Corp",
-    "Centris",
-    "Cir Tech",
-    "Clear Nexus",
-    "CloudTask",
-    "Cloudstaff",
-    "CogentHub",
-    "Collective Solution International",
-    "Comdata Group UK Limited",
-    "Company Voice LLC",
-    "Contact Centers Dominicana",
-    "Contact Resolution Inc",
-    "Contact Source Solutions LLC",
-    "ContactPoint 360",
-    "ContactWorks",
-    "Contacto GCS",
-    "Conversion Calls LLC",
-    "Corporate Technologies Advantage",
-    "Costa Rica Call Center",
-    "Credit Solutions Services Pty Limited",
-    "Cuentame SA",
-    "Cuore Group",
-    "Customer Contact Services",
-    "Customer Direct",
-    "DG Solutions",
-    "Datamark Incorporation",
-    "DialAmerica Marketing Inc",
-    "Dialog One",
-    "Direct Interactions Inc",
-    "Direct Marketing Partners",
-    "Disabled Veterans Call Center",
-    "Distressed Assets S.A.",
-    "Dominion Outsourcing",
-    "Dynamics Marketing Inc",
-    "ECE Contact Centers",
-    "EGS Global, Inc.",
-    "EMERGIA CUSTOMER CARE COLOMBIA SAS",
-    "EMS Inc",
-    "Eagle One",
-    "Ecco Group USA",
-    "Elevation Connect LLC",
-    "Ellora Telecom Philippines Inc",
-    "Emerge BPO",
-    "Empire One Global Solutions",
-    "Endicott Contact Centers",
-    "Etech",
-    "Eteleconnect Inc",
-    "Euro Interactive International",
-    "Everise LLC",
-    "Expivia",
-    "FM Outsource",
-    "Feesible Solutions LLC",
-    "First Call Resolution LLC",
-    "Five Star Call Center",
-    "Focus Services",
-    "Fusion BPO Services",
-    "FutureNow Technologies Inc",
-    "GGA Solutions",
-    "GLOBAL OUTSOURCING SOLUTIONS",
-    "GMS Connect",
-    "Gandalf IT Services LLP",
-    "General Revenue Corporation",
-    "Global Contact Services",
-    "Global Innovation Services",
-    "Global One Strategies",
-    "Global Remote Services SRL",
-    "Global Response",
-    "Global Virtuoso",
-    "GlowTouch Technologies",
-    "Grand Solutions",
-    "Great Falls Marketing",
-    "Grindstone Inc",
-    "Halloween Times",
-    "Hexaware Technologies Limited",
-    "Highlander Political Strategies",
-    "Humach",
-    "Human Call Centers LLC",
-    "IO Solutions Call Center Inc",
-    "ITM Marketing",
-    "Ideal Contact Center",
-    "Infinity",
-    "Infinity Brands",
-    "Infinity Support Group",
-    "InfoCision",
-    "Insight Communications",
-    "Invictus Solutions Limited",
-    "ItelBPO Solutions",
-    "J Teleconnections",
-    "J-Curve Technologies",
-    "Jindal Intellicom",
-    "KM2 Solutions",
-    "KocharTech",
-    "Konecta Argentina",
-    "Konecta Portugal",
-    "Konecta Spain",
-    "Landau Group",
-    "Leading Edge Connections",
-    "LinkActiv",
-    "Live Reps Call Center",
-    "LiveOps",
-    "MCI",
-    "Mango5",
-    "Marketing Alternatives Inc",
-    "MattsenKumar LLC",
-    "Mindpearl",
-    "Mount Healthcare Services",
-    "Mountain Valley Integrated Solutions",
-    "Multi Source Global Network Inc",
-    "Multiactivitati SRL",
-    "MySource LLC",
-    "NOVASORS",
-    "NexRep LLC",
-    "Next Door Solutions",
-    "OPSIFY",
-    "Office Beacon",
-    "OfficePartners360",
-    "OnQ Contact Center",
-    "One Contact Center Inc",
-    "OneLink Holdings SA",
-    "OneTouch Direct",
-    "Open Access BPO",
-    "Open Look",
-    "OptimumCX LLC",
-    "Options Marketing Group",
-    "Oregon Corrections Enterprises",
-    "OutPLEX",
-    "PERFORMATEL",
-    "Pena4 BPO",
-    "Perfect Pitch Technologies",
-    "PharmaCentra",
-    "PharmaKinnex Inc",
-    "Pondera Services LLC",
-    "Premier BPO",
-    "ProCom LLC",
-    "Promocall",
-    "Promoveo LLC",
-    "Protel",
-    "Proximo",
-    "Quality Contact Solutions Inc",
-    "Quality Customer Service & Sales Inc",
-    "RDI Corporation Inc",
-    "ROI Call Center Solutions",
-    "Radial",
-    "Radius Global Solutions",
-    "Raya Contact Center",
-    "Regalix Inc",
-    "Revenue Group",
-    "SRG Asia Pacific Sdn B",
-    "Segoso Caribbean",
-    "Sequence Health",
-    "Sibling Solutions",
-    "Simetrix Solutions LLC",
-    "Simply Contact Ltd",
-    "SinglePoint Group International",
-    "SkyCom Call Center",
-    "Skybridge Americas Inc",
-    "Smart Connect Outsourcing Solutions",
-    "Solvo Global",
-    "Stafford Communications",
-    "Stateside BPO",
-    "Support Services Group Call Center",
-    "TK Enterprises Inc",
-    "TMP Direct Inc",
-    "TSD Global",
-    "TalentWorldGroup Plc",
-    "Talk Americas",
-    "Tech Americas USA",
-    "TechMahindra",
-    "Techcel Outsourcing LLC",
-    "TeleSpeak",
-    "Telecontacto",
-    "Telepoint Communications",
-    "Tell2Tell",
-    "The Connection",
-    "The Heller Group",
-    "The Office Gurus",
-    "The Stride Center",
-    "Transparent BPO",
-    "Tri Source International",
-    "Tyme Global Technologies",
-    "UAssistMe",
-    "US4 IT SUPPORT LLC",
-    "Ujet Inc",
-    "Underguard Teleservices",
-    "Unido Digital",
-    "Unifin, Inc.",
-    "United Language Group",
-    "United Nearshore Operations",
-    "Universal Portfolio LLC",
-    "VANAD CONTACT CENTERS NEDERLAND BV",
-    "VSA Inc",
-    "Ver A Fast",
-    "Verticalops",
-    "Virtual Staffing",
-    "Visaya KPO",
-    "VivaCALL",
-    "Voysus Connection Experts Inc",
-    "Vsynergize Outsourcing Pvt Ltd",
-    "WE Marketing",
-    "Working Access Solutions Inc",
-    "Working Solutions",
-    "World Connection",
-    "Zero Variance",
-    "active contact",
-    "iCall Services Inc",
-    "iContact BPO",
-    "sds"
-]
+// var testingArray = [
+//     "24-7 Intouch",
+//     "A&T Ascension Consulting Inc",
+//     "ACD Direct",
+//     "AGR Group",
+//     "ARC Management Group",
+//     "ARCSmart Solutions",
+//     "AW Companies Inc",
+//     "Adentcom S de RL de CV",
+//     "Advensus",
+//     "Agents Republic",
+//     "Akorbi",
+//     "AlfredoTest",
+//     "Alliance DMS Inc",
+//     "Allied Customer Solutions",
+//     "Allied Global",
+//     "AmeeraTel",
+//     "American Customer Care",
+//     "American Help Desk",
+//     "Ameridial Inc",
+//     "Ansafone Contact Centers",
+//     "AnswerNet Inc",
+//     "Aptitude 360 Inc",
+//     "Argo ITC",
+//     "Axion Contact",
+//     "Azpired",
+//     "BDO Esnad",
+//     "BPO Centers",
+//     "Barrister Global Services Network Inc",
+//     "Bellsystem24Hoasao",
+//     "Bill Gosling Outsourcing",
+//     "Blake and Associates Holdings (Pty) Ltd",
+//     "Boomerang SA",
+//     "Bosch",
+//     "Business and Consumer Choices Telemarketing Ltd",
+//     "Buwelo",
+//     "CC Capital Group",
+//     "CCB Credit Services",
+//     "CCI Mauritius Limited",
+//     "CCI Systems Inc",
+//     "CCIG Group",
+//     "CNM BPO Solutions",
+//     "CSS Corp",
+//     "CTC TeleServices",
+//     "Calibrus Call Center Services LLC",
+//     "California Marketing Group",
+//     "Call 4 Health",
+//     "Call Center Services International",
+//     "Call Zilla",
+//     "Caribbean Contact Center",
+//     "Cati Call Center",
+//     "Cebu Tele-net Philippines Corp",
+//     "Centris",
+//     "Cir Tech",
+//     "Clear Nexus",
+//     "CloudTask",
+//     "Cloudstaff",
+//     "CogentHub",
+//     "Collective Solution International",
+//     "Comdata Group UK Limited",
+//     "Company Voice LLC",
+//     "Contact Centers Dominicana",
+//     "Contact Resolution Inc",
+//     "Contact Source Solutions LLC",
+//     "ContactPoint 360",
+//     "ContactWorks",
+//     "Contacto GCS",
+//     "Conversion Calls LLC",
+//     "Corporate Technologies Advantage",
+//     "Costa Rica Call Center",
+//     "Credit Solutions Services Pty Limited",
+//     "Cuentame SA",
+//     "Cuore Group",
+//     "Customer Contact Services",
+//     "Customer Direct",
+//     "DG Solutions",
+//     "Datamark Incorporation",
+//     "DialAmerica Marketing Inc",
+//     "Dialog One",
+//     "Direct Interactions Inc",
+//     "Direct Marketing Partners",
+//     "Disabled Veterans Call Center",
+//     "Distressed Assets S.A.",
+//     "Dominion Outsourcing",
+//     "Dynamics Marketing Inc",
+//     "ECE Contact Centers",
+//     "EGS Global, Inc.",
+//     "EMERGIA CUSTOMER CARE COLOMBIA SAS",
+//     "EMS Inc",
+//     "Eagle One",
+//     "Ecco Group USA",
+//     "Elevation Connect LLC",
+//     "Ellora Telecom Philippines Inc",
+//     "Emerge BPO",
+//     "Empire One Global Solutions",
+//     "Endicott Contact Centers",
+//     "Etech",
+//     "Eteleconnect Inc",
+//     "Euro Interactive International",
+//     "Everise LLC",
+//     "Expivia",
+//     "FM Outsource",
+//     "Feesible Solutions LLC",
+//     "First Call Resolution LLC",
+//     "Five Star Call Center",
+//     "Focus Services",
+//     "Fusion BPO Services",
+//     "FutureNow Technologies Inc",
+//     "GGA Solutions",
+//     "GLOBAL OUTSOURCING SOLUTIONS",
+//     "GMS Connect",
+//     "Gandalf IT Services LLP",
+//     "General Revenue Corporation",
+//     "Global Contact Services",
+//     "Global Innovation Services",
+//     "Global One Strategies",
+//     "Global Remote Services SRL",
+//     "Global Response",
+//     "Global Virtuoso",
+//     "GlowTouch Technologies",
+//     "Grand Solutions",
+//     "Great Falls Marketing",
+//     "Grindstone Inc",
+//     "Halloween Times",
+//     "Hexaware Technologies Limited",
+//     "Highlander Political Strategies",
+//     "Humach",
+//     "Human Call Centers LLC",
+//     "IO Solutions Call Center Inc",
+//     "ITM Marketing",
+//     "Ideal Contact Center",
+//     "Infinity",
+//     "Infinity Brands",
+//     "Infinity Support Group",
+//     "InfoCision",
+//     "Insight Communications",
+//     "Invictus Solutions Limited",
+//     "ItelBPO Solutions",
+//     "J Teleconnections",
+//     "J-Curve Technologies",
+//     "Jindal Intellicom",
+//     "KM2 Solutions",
+//     "KocharTech",
+//     "Konecta Argentina",
+//     "Konecta Portugal",
+//     "Konecta Spain",
+//     "Landau Group",
+//     "Leading Edge Connections",
+//     "LinkActiv",
+//     "Live Reps Call Center",
+//     "LiveOps",
+//     "MCI",
+//     "Mango5",
+//     "Marketing Alternatives Inc",
+//     "MattsenKumar LLC",
+//     "Mindpearl",
+//     "Mount Healthcare Services",
+//     "Mountain Valley Integrated Solutions",
+//     "Multi Source Global Network Inc",
+//     "Multiactivitati SRL",
+//     "MySource LLC",
+//     "NOVASORS",
+//     "NexRep LLC",
+//     "Next Door Solutions",
+//     "OPSIFY",
+//     "Office Beacon",
+//     "OfficePartners360",
+//     "OnQ Contact Center",
+//     "One Contact Center Inc",
+//     "OneLink Holdings SA",
+//     "OneTouch Direct",
+//     "Open Access BPO",
+//     "Open Look",
+//     "OptimumCX LLC",
+//     "Options Marketing Group",
+//     "Oregon Corrections Enterprises",
+//     "OutPLEX",
+//     "PERFORMATEL",
+//     "Pena4 BPO",
+//     "Perfect Pitch Technologies",
+//     "PharmaCentra",
+//     "PharmaKinnex Inc",
+//     "Pondera Services LLC",
+//     "Premier BPO",
+//     "ProCom LLC",
+//     "Promocall",
+//     "Promoveo LLC",
+//     "Protel",
+//     "Proximo",
+//     "Quality Contact Solutions Inc",
+//     "Quality Customer Service & Sales Inc",
+//     "RDI Corporation Inc",
+//     "ROI Call Center Solutions",
+//     "Radial",
+//     "Radius Global Solutions",
+//     "Raya Contact Center",
+//     "Regalix Inc",
+//     "Revenue Group",
+//     "SRG Asia Pacific Sdn B",
+//     "Segoso Caribbean",
+//     "Sequence Health",
+//     "Sibling Solutions",
+//     "Simetrix Solutions LLC",
+//     "Simply Contact Ltd",
+//     "SinglePoint Group International",
+//     "SkyCom Call Center",
+//     "Skybridge Americas Inc",
+//     "Smart Connect Outsourcing Solutions",
+//     "Solvo Global",
+//     "Stafford Communications",
+//     "Stateside BPO",
+//     "Support Services Group Call Center",
+//     "TK Enterprises Inc",
+//     "TMP Direct Inc",
+//     "TSD Global",
+//     "TalentWorldGroup Plc",
+//     "Talk Americas",
+//     "Tech Americas USA",
+//     "TechMahindra",
+//     "Techcel Outsourcing LLC",
+//     "TeleSpeak",
+//     "Telecontacto",
+//     "Telepoint Communications",
+//     "Tell2Tell",
+//     "The Connection",
+//     "The Heller Group",
+//     "The Office Gurus",
+//     "The Stride Center",
+//     "Transparent BPO",
+//     "Tri Source International",
+//     "Tyme Global Technologies",
+//     "UAssistMe",
+//     "US4 IT SUPPORT LLC",
+//     "Ujet Inc",
+//     "Underguard Teleservices",
+//     "Unido Digital",
+//     "Unifin, Inc.",
+//     "United Language Group",
+//     "United Nearshore Operations",
+//     "Universal Portfolio LLC",
+//     "VANAD CONTACT CENTERS NEDERLAND BV",
+//     "VSA Inc",
+//     "Ver A Fast",
+//     "Verticalops",
+//     "Virtual Staffing",
+//     "Visaya KPO",
+//     "VivaCALL",
+//     "Voysus Connection Experts Inc",
+//     "Vsynergize Outsourcing Pvt Ltd",
+//     "WE Marketing",
+//     "Working Access Solutions Inc",
+//     "Working Solutions",
+//     "World Connection",
+//     "Zero Variance",
+//     "active contact",
+//     "iCall Services Inc",
+//     "iContact BPO",
+//     "sds"
+// ]
 
+
+// var initialSAArray = ["AW Companies Inc",
+//     "ARCSmart Solutions",
+//     "A&T Ascension Consulting Inc",
+//     "24-7 Intouch",
+//     "ACD Direct",
+//     "AGR Group",
+//     "ARC Management Group",
+//     "Adentcom S de RL de CV",
+//     "Advensus",
+//     "Agents Republic",
+//     "Akorbi",
+//     "AlfredoTest"];  
+
+//     var initialSBSArray = ["AW Companies Inc",
+//     "ARCSmart Solutions",
+//     "A&T Ascension Consulting Inc",
+//     "24-7 Intouch",
+//     "ACD Direct",
+//     "AGR Group",
+//     "ARC Management Group",
+//     "Adentcom S de RL de CV",
+//     "Advensus",
+//     "Agents Republic"];
+
+// var initialCCSArray = ["AW Companies Inc",
+// "ARCSmart Solutions",
+// "A&T Ascension Consulting Inc",
+// "24-7 Intouch",
+// "ACD Direct",
+// "AGR Group",
+// "ARC Management Group",
+// "Adentcom S de RL de CV",
+// "Advensus"];
+
+
+// var initialSVSFArray = ["AW Companies Inc",
+// "ARCSmart Solutions",
+// "A&T Ascension Consulting Inc",
+// "24-7 Intouch",
+// "ACD Direct",
+// "AGR Group"];
+
+// var initialCAArray = ["24-7 Intouch"];
 
 
 
@@ -277,65 +321,115 @@ var sAArray = [];
 var elRow = []
 var allSelectedArray = [];
 var initialSelectedArray = [];
-var initialSAArray = ["AW Companies Inc",
-    "ARCSmart Solutions",
-    "A&T Ascension Consulting Inc",
-    "24-7 Intouch",
-    "ACD Direct",
-    "AGR Group",
-    "ARC Management Group",
-    "Adentcom S de RL de CV",
-    "Advensus",
-    "Agents Republic",
-    "Akorbi",
-    "AlfredoTest"];  
-
-    var initialSBSArray = ["AW Companies Inc",
-    "ARCSmart Solutions",
-    "A&T Ascension Consulting Inc",
-    "24-7 Intouch",
-    "ACD Direct",
-    "AGR Group",
-    "ARC Management Group",
-    "Adentcom S de RL de CV",
-    "Advensus",
-    "Agents Republic"];
-
-var initialCCSArray = ["AW Companies Inc",
-"ARCSmart Solutions",
-"A&T Ascension Consulting Inc",
-"24-7 Intouch",
-"ACD Direct",
-"AGR Group",
-"ARC Management Group",
-"Adentcom S de RL de CV",
-"Advensus"];
-
-
-var initialSVSFArray = ["AW Companies Inc",
-"ARCSmart Solutions",
-"A&T Ascension Consulting Inc",
-"24-7 Intouch",
-"ACD Direct",
-"AGR Group"];
-
-var initialCAArray = ["24-7 Intouch"];
-
-
-
-
+var initialSAArray = [];  
+var initialSBSArray = [];
+var initialCCSArray = [];
+var initialSVSFArray = [];
+var initialCAArray = [];
 
 
 //################################################
-//Testing Version Below
+//PROD VERSION V2 BELOW
 //################################################
+ZOHO.embeddedApp.on("PageLoad", entity => {
+    var moduleName = entity.Entity;
+    var recordId = entity.EntityId; 
+    ZOHO.CRM.API.getRecord({Entity: moduleName, RecordID: recordId})
+    .then(function (recordData) {
+        recordData = recordData.data[0];
+        dealName = recordData.Deal_Name;
+        document.getElementById("oppId").value = recordData.id;
+        allRecordData = recordData;
+        var salesApproved = recordData.Sales_Approved_Partners;
+        var sbsSelected = recordData.Partner_Search_Results;
+        var conferenceCallSelected = recordData.Conference_Call_Selected_Partners;
+        var siteVisitSelected = recordData.Client_Selected_Partner;
+        var clientApproved = recordData.Correct_Client_Approved_Vendors;
+        if(salesApproved.length > 0){
+            for(i=0;i<salesApproved.length;i++)
+            {
+                initialSAArray.push(salesApproved[i])
+            }
+        }
+        else
+        {
 
-createPartnerTable();
+        }
+        if(sbsSelected.length > 0){
+            for(i=0;i<sbsSelected.length;i++)
+            {
+                initialSBSArray.push(sbsSelected[i])
+            }
+        }
+        else
+        {
+            
+        }
+        if(conferenceCallSelected.length > 0){
+            for(i=0;i<conferenceCallSelected.length;i++)
+            {
+                initialCCSArray.push(conferenceCallSelected[i])
+            }
+        }
+        else
+        {
+            
+        }
+        if(siteVisitSelected.length > 0){
+            for(i=0;i<siteVisitSelected.length;i++)
+            {
+                initialSVSFArray.push(siteVisitSelected[i])
+            }
+        }
+        else
+        {
+            
+        }
+        if(clientApproved.length > 0){
+            for(i=0;i<clientApproved.length;i++)
+            {
+                initialCAArray.push(clientApproved[i])
+            }
+        }
+        else
+        {
+            
+        }
+        getPartners();
+        console.log(recordData)
+    });    
+});
+ZOHO.embeddedApp.init();
+
+
+
+function getPartners() {
+    ZOHO.CRM.API.searchRecord({Entity:"Vendors",Type:"criteria",Query:"(Status:equals:CCCA Executed)",per_page:200,page:pageNumber})
+    .then(function(response){
+        var allPartnerRecs = response.data;
+        allPartnerRecs.forEach(obj => {
+            partnerNameArray.push(obj.Vendor_Name);
+        });
+        if(response.info.more_records == true)
+        {
+            pageNumber += 1;
+            return getPartners();
+        }
+        else
+        {
+            createPartnerTable();
+            console.log(partnerNameArray);
+        }
+    });
+};
+
+
+//createPartnerTable();
 
 
 
 function createPartnerTable() {
-    testingArray.sort();
+    partnerNameArray.sort();
     if(initialSAArray.length > 0)
     {
         initialSAArray.forEach(element => {
@@ -343,8 +437,8 @@ function createPartnerTable() {
             if(initialSelectedArray.includes(element) == false)
             {
                 allSelectedArray.push(element)
-                testingArray.splice(testingArray.indexOf(element),1)
-                testingArray.unshift(element)
+                partnerNameArray.splice(partnerNameArray.indexOf(element),1)
+                partnerNameArray.unshift(element)
             }
         })
     }
@@ -356,8 +450,8 @@ function createPartnerTable() {
             if(initialSelectedArray.includes(element) == false)
             {
                 allSelectedArray.push(element)
-                testingArray.splice(testingArray.indexOf(element),1)
-                testingArray.unshift(element)
+                partnerNameArray.splice(partnerNameArray.indexOf(element),1)
+                partnerNameArray.unshift(element)
             }
         })    
     }
@@ -369,8 +463,8 @@ function createPartnerTable() {
             if(initialSelectedArray.includes(element) == false)
             {
                 allSelectedArray.push(element)
-                testingArray.splice(testingArray.indexOf(element),1)
-                testingArray.unshift(element)
+                partnerNameArray.splice(partnerNameArray.indexOf(element),1)
+                partnerNameArray.unshift(element)
             }
         })    
     }
@@ -382,8 +476,8 @@ function createPartnerTable() {
             if(initialSelectedArray.includes(element) == false)
             {
                 allSelectedArray.push(element)
-                testingArray.splice(testingArray.indexOf(element),1)
-                testingArray.unshift(element)
+                partnerNameArray.splice(partnerNameArray.indexOf(element),1)
+                partnerNameArray.unshift(element)
             }
         })    
     }
@@ -395,15 +489,15 @@ function createPartnerTable() {
             if(initialSelectedArray.includes(element) == false)
             {
                 allSelectedArray.push(element)
-                testingArray.splice(testingArray.indexOf(element),1)
-                testingArray.unshift(element)
+                partnerNameArray.splice(partnerNameArray.indexOf(element),1)
+                partnerNameArray.unshift(element)
             }
             
         })    
     }
 
     var resTableBody = document.getElementById("responseTableBody");
-    for (let i = 0; i < testingArray.length; i++){
+    for (let i = 0; i < partnerNameArray.length; i++){
         var newRow = document.createElement("TR");
         var newCheckCol = document.createElement("TH");
         var newCheck = document.createElement("input");
@@ -417,27 +511,27 @@ function createPartnerTable() {
         for(let x = 0; x < 5; x++){
             var newCol = document.createElement("TH");
             newCol.setAttribute("class","partnerColNum" + x);
-            newCol.innerHTML = testingArray[i];
+            newCol.innerHTML = partnerNameArray[i];
             newRow.setAttribute("class","partnerRow");
             newRow.appendChild(newCol);
             resTableBody.appendChild(newRow);
-            if(cAArray.includes(testingArray[i]) == true && newCol.className == "partnerColNum4")
+            if(cAArray.includes(partnerNameArray[i]) == true && newCol.className == "partnerColNum4")
             {
                 newCol.classList.add("partner-selected")
             }
-            if(sVSFArray.includes(testingArray[i]) == true && newCol.className == "partnerColNum3")
+            if(sVSFArray.includes(partnerNameArray[i]) == true && newCol.className == "partnerColNum3")
             {
                 newCol.classList.add("partner-selected")
             }
-            if(cCSArray.includes(testingArray[i]) == true && newCol.className == "partnerColNum2")
+            if(cCSArray.includes(partnerNameArray[i]) == true && newCol.className == "partnerColNum2")
             {
                 newCol.classList.add("partner-selected")
             }
-            if(sBSArray.includes(testingArray[i]) == true && newCol.className == "partnerColNum1")
+            if(sBSArray.includes(partnerNameArray[i]) == true && newCol.className == "partnerColNum1")
             {
                 newCol.classList.add("partner-selected")
             }
-            if(sAArray.includes(testingArray[i]) == true && newCol.className == "partnerColNum0")
+            if(sAArray.includes(partnerNameArray[i]) == true && newCol.className == "partnerColNum0")
             {
                 newCol.classList.add("partner-selected")
             }
@@ -531,7 +625,6 @@ function createPartnerTable() {
             })
 
             function toggleClickFunction(elRow){
-                
                 var elArray = []
                 if(elRow.length == undefined){
                     elArray.push(elRow)
@@ -543,18 +636,63 @@ function createPartnerTable() {
                     }
                 }
                 for(let i = 0; i < elArray.length; i++){
-                    elClass = elArray[i].className
-                    elTextContent = triggerEl.textContent
+                    var elClass = elArray[i].className
+                    var elTextContent = elArray[i].textContent
                     if(elClass.includes("partner-selected"))
                     {
                         resTableBody.insertBefore(triggerEl.parentElement, resTableBody.firstChild)
-                        allSelectedArray.push(elArray[i].textContent)
+                        allSelectedArray.push(elTextContent)
+                        if(elClass.includes("partnerColNum0"))
+                        {
+                            sAArray.push(elTextContent)
+                        }
+                        else if(elClass.includes("partnerColNum1"))
+                        {
+                            sBSArray.push(elTextContent)
+                        }
+                        else if(elClass.includes("partnerColNum2"))
+                        {
+                            cCSArray.push(elTextContent)
+                        }
+                        else if(elClass.includes("partnerColNum3"))
+                        {
+                            sVSFArray.push(elTextContent)
+                        }
+                        else if(elClass.includes("partnerColNum4"))
+                        {
+                            cAArray.push(elTextContent)
+                        }
                     }
                     else if(!elClass.includes("partner-selected"))
                     {
-                        let uniqueArray = [...new Set(allSelectedArray)]
+                        var uniqueArray = [...new Set(allSelectedArray)]
                         allSelectedArray.splice(allSelectedArray.indexOf(elTextContent),1)
-                        testingArray.unshift(elTextContent)
+                        partnerNameArray.unshift(elTextContent)
+                        if(elClass.includes("partnerColNum0"))
+                        {
+                            var filteredElements = sAArray.filter(val => (val != elTextContent))
+                            sAArray = filteredElements
+                        }
+                        else if(elClass.includes("partnerColNum1"))
+                        {
+                            var filteredElements = sBSArray.filter(val => (val != elTextContent))
+                            sBSArray = filteredElements
+                        }
+                        else if(elClass.includes("partnerColNum2"))
+                        {
+                            var filteredElements = cCSArray.filter(val => (val != elTextContent))
+                            cCSArray = filteredElements
+                        }
+                        else if(elClass.includes("partnerColNum3"))
+                        {
+                            var filteredElements = sVSFArray.filter(val => (val != elTextContent))
+                            sVSFArray = filteredElements
+                        }
+                        else if(elClass.includes("partnerColNum4"))
+                        {
+                            var filteredElements = cAArray.filter(val => (val != elTextContent))
+                            cAArray = filteredElements
+                        }
                         if(!allSelectedArray.includes(elTextContent))
                         {
                             resTableBody.insertBefore(triggerEl.parentElement, resTableBody.children[uniqueArray.length])
@@ -569,7 +707,24 @@ function createPartnerTable() {
     })
 }
 
-function checkForUpdates() {
+function updateButton() {
+
+    var config = {
+        Entity:"Deals",
+        APIData:{
+            "id" : "1190034000100993270"
+        }
+    }
+
+    let uniqueSA = [...new Set(sAArray)]
+
+    let uniqueSBS = [...new Set(sBSArray)]
+
+    let uniqueCC = [...new Set(cCSArray)]
+
+    let uniqueSV = [...new Set(sVSFArray)]
+
+    let uniqueCA = [...new Set(cAArray)]
 
     const checkSAForUpdate = (a, b) => {
         if (a.length !== b.length) return false;
@@ -631,19 +786,25 @@ function checkForUpdates() {
       }
 
 
-      if(checkSAForUpdate(initialSAArray,sAArray) == false)
+      if(checkSAForUpdate(initialSAArray,uniqueSA) == false)
       {
-          console.log("SA NEEDS UPDATE")
+          //console.log("SA NEEDS UPDATE")
+        //   console.log("INITIAL: " + initialSAArray)
+        //   console.log("SAARRAY: " + uniqueSA)
+          config.APIData.Sales_Approved_Partners = uniqueSA
       }
       else
       {
-          console.log("SA: SAMEEE")
+          console.log("SA SAME")
       }
 
 
-      if(checkSBSForUpdate(initialSBSArray,sBSArray) == false)
+      if(checkSBSForUpdate(initialSBSArray,uniqueSBS) == false)
       {
-          console.log("SBS NEEDS UPDATE")
+        //   console.log("SBS NEEDS UPDATE")
+        //   console.log("INITIAL: " + initialSBSArray)
+        //   console.log("SBSARRAY: " + uniqueSBS)
+        config.APIData.Partner_Search_Results = uniqueSBS
       }
       else
       {
@@ -651,9 +812,13 @@ function checkForUpdates() {
       }  
 
 
-      if(checkCCSForUpdate(initialCCSArray,cCSArray) == false)
+      if(checkCCSForUpdate(initialCCSArray,uniqueCC) == false)
       {
-          console.log("CCS NEEDS UPDATE")
+        //   console.log("CCS NEEDS UPDATE")
+        //   console.log("INITIAL: " + initialCCSArray)
+        //   console.log("CCSARRAY: " + uniqueCC)
+        config.APIData.Conference_Call_Selected_Partners = uniqueCC
+
       }
       else
       {
@@ -661,9 +826,12 @@ function checkForUpdates() {
       }  
 
 
-      if(checkSVSFForUpdate(initialSVSFArray,sVSFArray) == false)
+      if(checkSVSFForUpdate(initialSVSFArray,uniqueSV) == false)
       {
-          console.log("SVS NEEDS UPDATE")
+        //   console.log("SVS NEEDS UPDATE")
+        //   console.log("INITIAL: " + initialSVSFArray)
+        //   console.log("SVS: " + uniqueSV)
+        config.APIData.Client_Selected_Partner = uniqueSV
       }
       else
       {
@@ -671,15 +839,25 @@ function checkForUpdates() {
       }  
 
 
-      if(checkCAForUpdate(initialCAArray,cAArray) == false)
+      if(checkCAForUpdate(initialCAArray,uniqueCA) == false)
       {
-          console.log("CA NEEDS UPDATE")
+        //   console.log("CA NEEDS UPDATE")
+        //   console.log("INITIAL: " + initialCAArray)
+        //   console.log("CAARRAY: " + uniqueCA)
+        config.APIData.Correct_Client_Approved_Vendors = uniqueCA
       }
       else
       {
           console.log("CA: SAMEEE")
-      } 
+      }
+      console.log(config)
+      ZOHO.CRM.API.updateRecord(config)
+      .then(function(data){
+          console.log(data)
+      });
 }
+
+
 
 
 $(document).ready(function(){
@@ -690,7 +868,7 @@ $(document).ready(function(){
         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         if($(this)[0].style.display != "none")
         {
-                $(this)[0].parentElement.getElementsByClassName("partnerColNum5")[0].style = 'display'
+            $(this)[0].parentElement.getElementsByClassName("partnerColNum5")[0].style = 'display'
         }
       });
     });

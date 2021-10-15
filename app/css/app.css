@@ -10,6 +10,9 @@
     font-size: 30px; 
 }
 
-.partner-button {
-    background-color:aquamarine;
+
+.selectAllCheckbox {
+    margin: 0 auto;
+    width: 3%;
+    height: 3%;
 }

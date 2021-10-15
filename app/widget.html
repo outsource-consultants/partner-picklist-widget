@@ -9,19 +9,6 @@
   <body>
     <div class="container">
       <div class="p-3 text-center partner-title">Partner Picklist</div>
-      <div>
-        <div class="row">
-          <div class="col">
-            <div class="list-group" id="partnerButtons">
-              <a class="list-group-item">Sales Approved Partners</a>
-              <a class="list-group-item">SBS Selected Partners</a>
-              <a class="list-group-item">Conference Call Selected Partners</a>
-              <a class="list-group-item">Site Visit Selected Finalist</a>
-              <a class="list-group-item">Client Approved Partner</a>
-            </div>
-          </div>
-        </div>
-      </div>
         <p id="oppId" hidden>OppId</p>
         <p id="salesA" hidden>OppId</p>
         <p id="sbs" hidden>OppId</p>
@@ -30,7 +17,7 @@
         <p id="clientA" hidden>OppId</p>
         <div class="row">
           <div class="col text-center">
-            <button type="button" class="btn btn-info " onclick="updatePartnerPicklist()">Update Picklist</button>
+            <button type="button" class="btn btn-info " onclick="checkForUpdates()">Update Tester</button>
           </div>
         </div>
         <div>
@@ -41,6 +28,7 @@
               <table class="table">
                 <thead>
                   <tr>
+                    <th id="partnerCol5" scope="col">Select All</th>
                     <th id="partnerCol0" scope="col">Sales Approved Partners</th>
                     <th id="partnerCol1" scope="col">SBS Selected Partners</th>
                     <th id="partnerCol2" scope="col">Conference Call Selected Partners</th>

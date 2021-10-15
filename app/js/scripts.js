@@ -269,12 +269,61 @@ var allRecordData = {};
 var pageNumber = 1;
 var partnerNameArray = [];
 var selectedPartnersArray = [];
-var sAArray = [];
-var sBSArray = [];
-var cCSArray = [];
-var sVSFArray = [];
 var cAArray = [];
-var initialArray = []
+var sVSFArray = [];
+var cCSArray = [];
+var sBSArray = [];
+var sAArray = [];
+var elRow = []
+var allSelectedArray = [];
+var initialSelectedArray = [];
+var initialSAArray = ["AW Companies Inc",
+    "ARCSmart Solutions",
+    "A&T Ascension Consulting Inc",
+    "24-7 Intouch",
+    "ACD Direct",
+    "AGR Group",
+    "ARC Management Group",
+    "Adentcom S de RL de CV",
+    "Advensus",
+    "Agents Republic",
+    "Akorbi",
+    "AlfredoTest"];  
+
+    var initialSBSArray = ["AW Companies Inc",
+    "ARCSmart Solutions",
+    "A&T Ascension Consulting Inc",
+    "24-7 Intouch",
+    "ACD Direct",
+    "AGR Group",
+    "ARC Management Group",
+    "Adentcom S de RL de CV",
+    "Advensus",
+    "Agents Republic"];
+
+var initialCCSArray = ["AW Companies Inc",
+"ARCSmart Solutions",
+"A&T Ascension Consulting Inc",
+"24-7 Intouch",
+"ACD Direct",
+"AGR Group",
+"ARC Management Group",
+"Adentcom S de RL de CV",
+"Advensus"];
+
+
+var initialSVSFArray = ["AW Companies Inc",
+"ARCSmart Solutions",
+"A&T Ascension Consulting Inc",
+"24-7 Intouch",
+"ACD Direct",
+"AGR Group"];
+
+var initialCAArray = ["24-7 Intouch"];
+
+
+
+
 
 
 //################################################
@@ -284,103 +333,365 @@ var initialArray = []
 createPartnerTable();
 
 
+
 function createPartnerTable() {
     testingArray.sort();
+    if(initialSAArray.length > 0)
+    {
+        initialSAArray.forEach(element => {
+            sAArray.push(element)
+            if(initialSelectedArray.includes(element) == false)
+            {
+                allSelectedArray.push(element)
+                testingArray.splice(testingArray.indexOf(element),1)
+                testingArray.unshift(element)
+            }
+        })
+    }
+
+    if (initialSBSArray.length > 0)
+    {
+        initialSBSArray.forEach(element => {
+            sBSArray.push(element)
+            if(initialSelectedArray.includes(element) == false)
+            {
+                allSelectedArray.push(element)
+                testingArray.splice(testingArray.indexOf(element),1)
+                testingArray.unshift(element)
+            }
+        })    
+    }
+
+    if (initialCCSArray.length > 0)
+    {
+        initialCCSArray.forEach(element => {
+            cCSArray.push(element)
+            if(initialSelectedArray.includes(element) == false)
+            {
+                allSelectedArray.push(element)
+                testingArray.splice(testingArray.indexOf(element),1)
+                testingArray.unshift(element)
+            }
+        })    
+    }
+
+    if (initialSVSFArray.length > 0)
+    {
+        initialSVSFArray.forEach(element => {
+            sVSFArray.push(element)
+            if(initialSelectedArray.includes(element) == false)
+            {
+                allSelectedArray.push(element)
+                testingArray.splice(testingArray.indexOf(element),1)
+                testingArray.unshift(element)
+            }
+        })    
+    }
+
+    if (initialCAArray.length > 0)
+    {
+        initialCAArray.forEach(element => {
+            cAArray.push(element)
+            if(initialSelectedArray.includes(element) == false)
+            {
+                allSelectedArray.push(element)
+                testingArray.splice(testingArray.indexOf(element),1)
+                testingArray.unshift(element)
+            }
+            
+        })    
+    }
+
     var resTableBody = document.getElementById("responseTableBody");
     for (let i = 0; i < testingArray.length; i++){
         var newRow = document.createElement("TR");
+        var newCheckCol = document.createElement("TH");
+        var newCheck = document.createElement("input");
+        newCheckCol.setAttribute("class","partnerColNum5");
+        newCheck.setAttribute("class","form-check-input selectAllCheckbox");
+        newCheck.setAttribute("type","checkbox");
+        newCheck.setAttribute("id","flexCheckDefault");
+        newCheckCol.appendChild(newCheck);
+        newRow.appendChild(newCheckCol);
+        resTableBody.appendChild(newRow);
         for(let x = 0; x < 5; x++){
             var newCol = document.createElement("TH");
             newCol.setAttribute("class","partnerColNum" + x);
             newCol.innerHTML = testingArray[i];
+            newRow.setAttribute("class","partnerRow");
             newRow.appendChild(newCol);
             resTableBody.appendChild(newRow);
+            if(cAArray.includes(testingArray[i]) == true && newCol.className == "partnerColNum4")
+            {
+                newCol.classList.add("partner-selected")
+            }
+            if(sVSFArray.includes(testingArray[i]) == true && newCol.className == "partnerColNum3")
+            {
+                newCol.classList.add("partner-selected")
+            }
+            if(cCSArray.includes(testingArray[i]) == true && newCol.className == "partnerColNum2")
+            {
+                newCol.classList.add("partner-selected")
+            }
+            if(sBSArray.includes(testingArray[i]) == true && newCol.className == "partnerColNum1")
+            {
+                newCol.classList.add("partner-selected")
+            }
+            if(sAArray.includes(testingArray[i]) == true && newCol.className == "partnerColNum0")
+            {
+                newCol.classList.add("partner-selected")
+            }
         }
     }
-    console.log(resTableBody);
     var partnerList = [].slice.call(document.querySelectorAll('#responseTableBody TH'))
+    
     partnerList.forEach(function (triggerEl) {
         var tabTrigger = new bootstrap.Tab(triggerEl)
-        triggerEl.addEventListener('click', function (event) {
-            var row = $(this).parents("tr:first")
-            console.log(row)
-            event.preventDefault()
-            tabTrigger._element.classList.toggle("partner-selected")
-            var picklistClass = tabTrigger._element.classList[0]
-            var picklistSelectedClass = tabTrigger._element.classList[1]
-            var partnerText = tabTrigger._element.textContent
-            if(picklistSelectedClass == "partner-selected")
-            {
-                if(picklistClass == "partnerColNum0")
+            triggerEl.addEventListener('click', function (event) {
+                if(!tabTrigger._element.className.includes("partnerColNum5"))
                 {
-                    sAArray.push(partnerText)
-                    console.log(sAArray)
-                    console.log(sAArray.un)
+                    event.preventDefault()
+                    tabTrigger._element.classList.toggle("partner-selected")
+                    var picklistClass = tabTrigger._element.classList[0]
+                    var picklistSelectedClass = tabTrigger._element.classList[1]
+                    var partnerText = tabTrigger._element.textContent
+                    toggleClickFunction(tabTrigger._element)
+                    if(picklistSelectedClass == "partner-selected")
+                    {
+                        if(picklistClass == "partnerColNum4")
+                        {
+                            cAArray.push(partnerText)
+                        }
+                        else if(picklistClass == "partnerColNum0")
+                        {
+                            sAArray.push(partnerText)
+                        }
+                        else if(picklistClass == "partnerColNum1")
+                        {
+                            sBSArray.push(partnerText)
+                        }
+                        else if(picklistClass == "partnerColNum2")
+                        {
+                            cCSArray.push(partnerText)
+                        }
+                        else if(picklistClass == "partnerColNum3")
+                        {
+                            sVSFArray.push(partnerText)
+                        }
+                        else
+                        {
+                            console.log("Choice Not Caught????")
+                        }
+                    }
+                    else
+                    {
+                        if(picklistClass == "partnerColNum0")
+                        {
+                            var filteredElements = sAArray.filter(val => (val != partnerText))
+                            sAArray = filteredElements
+                        }
+                        else if(picklistClass == "partnerColNum1")
+                        {
+                            var filteredElements = sBSArray.filter(val => (val != partnerText))
+                            sBSArray = filteredElements
+                        }
+                        else if(picklistClass == "partnerColNum2")
+                        {
+                            var filteredElements = cCSArray.filter(val => (val != partnerText))
+                            cCSArray = filteredElements
+                        }
+                        else if(picklistClass == "partnerColNum3")
+                        {
+                            var filteredElements = sVSFArray.filter(val => (val != partnerText))
+                            sVSFArray = filteredElements
+                        }
+                        else if(picklistClass == "partnerColNum4")
+                        {
+                            var filteredElements = cAArray.filter(val => (val != partnerText))
+                            cAArray = filteredElements
+                        }
+                        else
+                        {
+                            console.log("Choice Not Caught????")
+                        }
+                    }
+                } else if(tabTrigger._element.className.includes("partnerColNum5")) {
+                    var elems = triggerEl.parentElement.children
+                    var elemsArray = []
+                    for(let i = 0; i < elems.length; i++)
+                    {
+                        if(elems[i].className != "partnerColNum5")
+                        {
+                            elems[i].classList.toggle("partner-selected")
+                            elemsArray.push(elems[i])
+                        }
+                    }
+                    toggleClickFunction(elemsArray)
                 }
-                else if(picklistClass == "partnerColNum1")
-                {
-                    sBSArray.push(partnerText)
-                }
-                else if(picklistClass == "partnerColNum2")
-                {
-                    cCSArray.push(partnerText)
-                }
-                else if(picklistClass == "partnerColNum3")
-                {
-                    sVSFArray.push(partnerText)
-                }
-                else if(picklistClass == "partnerColNum4")
-                {
-                    cAArray.push(partnerText)
+            })
+
+            function toggleClickFunction(elRow){
+                
+                var elArray = []
+                if(elRow.length == undefined){
+                    elArray.push(elRow)
                 }
                 else
                 {
-                    console.log("Choice Not Caught????")
+                    for(let i = 0; i < elRow.length; i++){
+                        elArray.push(elRow[i])
+                    }
                 }
-            }
-            else
-            {
-                if(picklistClass == "partnerColNum0")
-                {
-                    var filteredElements = sAArray.filter(val => (val != partnerText))
-                    sAArray = filteredElements
+                for(let i = 0; i < elArray.length; i++){
+                    elClass = elArray[i].className
+                    elTextContent = triggerEl.textContent
+                    if(elClass.includes("partner-selected"))
+                    {
+                        resTableBody.insertBefore(triggerEl.parentElement, resTableBody.firstChild)
+                        allSelectedArray.push(elArray[i].textContent)
+                    }
+                    else if(!elClass.includes("partner-selected"))
+                    {
+                        let uniqueArray = [...new Set(allSelectedArray)]
+                        allSelectedArray.splice(allSelectedArray.indexOf(elTextContent),1)
+                        testingArray.unshift(elTextContent)
+                        if(!allSelectedArray.includes(elTextContent))
+                        {
+                            resTableBody.insertBefore(triggerEl.parentElement, resTableBody.children[uniqueArray.length])
+                        }
+                    }
+                    else
+                    {
+                        console.log("something happened")
+                    }
                 }
-                else if(picklistClass == "partnerColNum1")
-                {
-                    var filteredElements = sBSArray.filter(val => (val != partnerText))
-                    sBSArray = filteredElements
-                }
-                else if(picklistClass == "partnerColNum2")
-                {
-                    var filteredElements = cCSArray.filter(val => (val != partnerText))
-                    cCSArray = filteredElements
-                }
-                else if(picklistClass == "partnerColNum3")
-                {
-                    var filteredElements = sVSFArray.filter(val => (val != partnerText))
-                    sVSFArray = filteredElements
-                }
-                else if(picklistClass == "partnerColNum4")
-                {
-                    var filteredElements = cAArray.filter(val => (val != partnerText))
-                    cAArray = filteredElements
-                }
-                else
-                {
-                    console.log("Choice Not Caught????")
-                }
-            }
-        })
+            }    
     })
 }
 
+function checkForUpdates() {
+
+    const checkSAForUpdate = (a, b) => {
+        if (a.length !== b.length) return false;
+        const uniqueValues = new Set([...a, ...b]);
+        for (const v of uniqueValues) {
+          const aCount = a.filter(e => e === v).length;
+          const bCount = b.filter(e => e === v).length;
+          if (aCount !== bCount) return false;
+        }
+        return true;
+      }
+
+
+    const checkSBSForUpdate = (a, b) => {
+        if (a.length !== b.length) return false;
+        const uniqueValues = new Set([...a, ...b]);
+        for (const v of uniqueValues) {
+          const aCount = a.filter(e => e === v).length;
+          const bCount = b.filter(e => e === v).length;
+          if (aCount !== bCount) return false;
+        }
+        return true;
+      }
+
+
+    const checkCCSForUpdate = (a, b) => {
+        if (a.length !== b.length) return false;
+        const uniqueValues = new Set([...a, ...b]);
+        for (const v of uniqueValues) {
+          const aCount = a.filter(e => e === v).length;
+          const bCount = b.filter(e => e === v).length;
+          if (aCount !== bCount) return false;
+        }
+        return true;
+      }
+ 
+
+    const checkSVSFForUpdate = (a, b) => {
+        if (a.length !== b.length) return false;
+        const uniqueValues = new Set([...a, ...b]);
+        for (const v of uniqueValues) {
+          const aCount = a.filter(e => e === v).length;
+          const bCount = b.filter(e => e === v).length;
+          if (aCount !== bCount) return false;
+        }
+        return true;
+      }
+ 
+
+    const checkCAForUpdate = (a, b) => {
+        if (a.length !== b.length) return false;
+        const uniqueValues = new Set([...a, ...b]);
+        for (const v of uniqueValues) {
+          const aCount = a.filter(e => e === v).length;
+          const bCount = b.filter(e => e === v).length;
+          if (aCount !== bCount) return false;
+        }
+        return true;
+      }
+
+
+      if(checkSAForUpdate(initialSAArray,sAArray) == false)
+      {
+          console.log("SA NEEDS UPDATE")
+      }
+      else
+      {
+          console.log("SA: SAMEEE")
+      }
+
+
+      if(checkSBSForUpdate(initialSBSArray,sBSArray) == false)
+      {
+          console.log("SBS NEEDS UPDATE")
+      }
+      else
+      {
+          console.log("SBS: SAMEEE")
+      }  
+
+
+      if(checkCCSForUpdate(initialCCSArray,cCSArray) == false)
+      {
+          console.log("CCS NEEDS UPDATE")
+      }
+      else
+      {
+          console.log("CCS: SAMEEE")
+      }  
+
+
+      if(checkSVSFForUpdate(initialSVSFArray,sVSFArray) == false)
+      {
+          console.log("SVS NEEDS UPDATE")
+      }
+      else
+      {
+          console.log("SVS: SAMEEE")
+      }  
+
+
+      if(checkCAForUpdate(initialCAArray,cAArray) == false)
+      {
+          console.log("CA NEEDS UPDATE")
+      }
+      else
+      {
+          console.log("CA: SAMEEE")
+      } 
+}
 
 
 $(document).ready(function(){
     $("#tableSearch").on("keyup", function() {
       var value = $(this).val().toLowerCase();
+      //var checkEl = document.getElementsByClassName("partnerCol5")
       $("#responseTableBody th").filter(function() {
         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        if($(this)[0].style.display != "none")
+        {
+                $(this)[0].parentElement.getElementsByClassName("partnerColNum5")[0].style = 'display'
+        }
       });
     });
 });

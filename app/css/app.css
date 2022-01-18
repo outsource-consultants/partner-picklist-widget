@@ -1,18 +1,110 @@
-#partner-selected {
+/* #partner-selected {
     background-color: aquamarine;
+} */
+
+.partner-selected, .partner-title {
+    background-color: #fdb653;
+    border-style: none;
 }
 
-.partner-selected {
-    background-color: aquamarine;
-}
-
-.partner-title {
-    font-size: 30px; 
-}
-
-
-.selectAllCheckbox {
+/* .selectAllCheckbox {
     margin: 0 auto;
     width: 3%;
     height: 3%;
+} */
+
+.navBarContainer{
+    margin-left: 0px;
+    margin-right: 0px;
 }
+
+.container-fluid {
+    padding-left: 0px;
+    padding-right: 0px;
+    background-color: #E8EAE3;
+}
+
+.updateButton {
+    background-color: #343a40;
+    border-style: none;
+    height: 60px;
+    width: 150;
+    font-size: 23px;  
+}
+
+.updateButton:hover {
+    background-color: #343a40;
+    opacity: .75;
+}
+.topTableClass {
+    margin-bottom: 0px;;
+}
+
+
+.checkboxDiv {
+    position: relative;
+    text-align: center;
+}
+  
+.checkboxDiv label {
+    width: 23px;
+    height: 23px;
+    cursor: pointer;
+    position: absolute;
+    background: white;
+    border-radius: 4px;
+    top: 0;
+    left: 24%;
+}
+.checkboxDiv label:after {
+    content: '';
+    width: 15px;
+    height: 8px;
+    position: absolute;
+    top: 5px;
+    left: 4px;
+    border: 3px solid #343a40;
+    border-top: none;
+    border-right: none;
+    background: transparent;
+    opacity: 0;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.checkboxDiv label:hover::after {
+    opacity: 0.3;
+}
+  
+.checkboxDiv input[type=checkbox] {
+    visibility: hidden;
+}
+  
+.checkboxDiv input[type="checkbox"]:checked + label::after{
+    opacity: 1 !important;
+}
+
+.label-text {
+    position: relative;
+    left: 10px;
+}
+
+/* .checkboxDiv .selectAllCheckbox:checked {
+    background-color: green !important;
+} */
+
+/* .checkboxDiv input[type="checkbox"]:checked{
+    height: 500px;
+    color: #343a40 !important;
+    background: #343a40 !important;
+    background-color: #343a40 !important;
+}
+
+.checkboxDiv input[type="checkbox"] + label::before
+{background-color: #990000;  border-color: #990000;} */
+
+
+/* .buttonDiv {
+    background-image: url("../images/splatterMaybeTransparent.png");
+} */
+

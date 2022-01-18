@@ -332,6 +332,9 @@ var initialCAArray = [];
 //PROD VERSION V2 BELOW
 //################################################
 ZOHO.embeddedApp.on("PageLoad", entity => {
+    ZOHO.CRM.UI.Resize({height:"1200",width:"1200"}).then(function(data){
+        console.log(data);
+    });
     var moduleName = entity.Entity;
     var recordId = entity.EntityId; 
     ZOHO.CRM.API.getRecord({Entity: moduleName, RecordID: recordId})
@@ -396,9 +399,9 @@ ZOHO.embeddedApp.on("PageLoad", entity => {
             
         }
         getPartners();
-        console.log(recordData)
     });    
 });
+
 ZOHO.embeddedApp.init();
 
 
@@ -418,7 +421,6 @@ function getPartners() {
         else
         {
             createPartnerTable();
-            console.log(partnerNameArray);
         }
     });
 };
@@ -495,17 +497,22 @@ function createPartnerTable() {
             
         })    
     }
-
     var resTableBody = document.getElementById("responseTableBody");
     for (let i = 0; i < partnerNameArray.length; i++){
         var newRow = document.createElement("TR");
         var newCheckCol = document.createElement("TH");
+        var newCheckDiv = document.createElement("div");
         var newCheck = document.createElement("input");
+        var newLabel = document.createElement("label");
         newCheckCol.setAttribute("class","partnerColNum5");
+        newCheckDiv.setAttribute("class","checkboxDiv");
+        newLabel.setAttribute("class","checkboxLabel");
         newCheck.setAttribute("class","form-check-input selectAllCheckbox");
         newCheck.setAttribute("type","checkbox");
         newCheck.setAttribute("id","flexCheckDefault");
-        newCheckCol.appendChild(newCheck);
+        newCheckDiv.appendChild(newCheck);
+        newCheckDiv.appendChild(newLabel);
+        newCheckCol.appendChild(newCheckDiv);
         newRow.appendChild(newCheckCol);
         resTableBody.appendChild(newRow);
         for(let x = 0; x < 5; x++){
@@ -535,6 +542,10 @@ function createPartnerTable() {
             {
                 newCol.classList.add("partner-selected")
             }
+           if(cAArray.includes(partnerNameArray[i]) == true && sVSFArray.includes(partnerNameArray[i]) == true && cCSArray.includes(partnerNameArray[i]) == true && sBSArray.includes(partnerNameArray[i]) == true && sAArray.includes(partnerNameArray[i]) == true)
+           {
+                newCheckCol.children[0].children[0].checked = true;
+           }
         }
     }
     var partnerList = [].slice.call(document.querySelectorAll('#responseTableBody TH'))
@@ -544,7 +555,8 @@ function createPartnerTable() {
             triggerEl.addEventListener('click', function (event) {
                 if(!tabTrigger._element.className.includes("partnerColNum5"))
                 {
-                    event.preventDefault()
+                    isChecked = tabTrigger._element.parentElement.children[0].children[0].checked;
+                    //event.preventDefault()
                     tabTrigger._element.classList.toggle("partner-selected")
                     var picklistClass = tabTrigger._element.classList[0]
                     var picklistSelectedClass = tabTrigger._element.classList[1]
@@ -609,21 +621,107 @@ function createPartnerTable() {
                             console.log("Choice Not Caught????")
                         }
                     }
+                    checkBoxSelection(tabTrigger);
                 } else if(tabTrigger._element.className.includes("partnerColNum5")) {
-                    var elems = triggerEl.parentElement.children
-                    var elemsArray = []
-                    for(let i = 0; i < elems.length; i++)
+                    //isChecked = tabTrigger._element.children[0].checked;
+                    isChecked = tabTrigger._element.children[0].children[0].checked;
+                    //var selectedCount = 0;
+                    var elems = triggerEl.parentElement.children;
+                    var elemsArray = [];
+                    if(isChecked == false)
                     {
-                        if(elems[i].className != "partnerColNum5")
+                        for(let i = 1; i < 6; i++)
                         {
-                            elems[i].classList.toggle("partner-selected")
-                            elemsArray.push(elems[i])
+                            elems[i].classList.add("partner-selected")
+                            elemsArray.push(elems[i]);
+                            //allSelectedArray.push(elems[i]);
                         }
                     }
-                    toggleClickFunction(elemsArray)
+                    else
+                    {
+                        for(let i = 1; i < 6; i++)
+                        {
+                            elems[i].classList.remove("partner-selected");
+                            elemsArray.push(elems[i]);
+                        }
+                    }
+
+
+
+                    // for(let i = 1; i < 6; i++)
+                    // {
+                    //     if(elems[i].classList.contains("partner-selected"))
+                    //     {
+                    //         selectedCount++
+                    //     }
+                    //     else
+                    //     {
+                    //     }
+                    // }
+                    // if(selectedCount<5)
+                    // {
+                    //     for(let i = 1; i < 6; i++)
+                    //     {
+                    //         //elems[i].classList.add("partner-selected")
+                    //         elemsArray.push(elems[i])
+                    //     }
+                    //     tabTrigger._element.children[0].children[0].checked = true;
+                    //     console.log("Selected Count: " + selectedCount + " :SELECT ALL TRUE");
+                    // }
+                    // else
+                    // {
+                    //     for(let i = 1; i < 6; i++)
+                    //     {
+                    //         //elems[i].classList.remove("partner-selected")
+                    //         elemsArray.push(elems[i])
+                    //     }
+                    //     tabTrigger._element.children[0].children[0].checked = false;
+                    //     console.log("Selected Count: " + selectedCount + " :FALSSSEEE");
+                    // }
+
+
+
+
+
+                    // for(let i = 0; i < elems.length; i++)
+                    // {
+                    //     //console.log(elems[i])
+                    //     if(elems[i].className != "partnerColNum5")
+                    //     {
+                    //         //elems[i].classList.toggle("partner-selected")
+                    //         // console.log("NOT REMOVED")
+                    //         // elems[i].classList.add("partner-selected")
+                    //         // console.log(elems[i].classList)
+                    //         // elemsArray.push(elems[i])
+                    //     }
+                    // }
+                    checkBoxSelection(tabTrigger);
+                    toggleClickFunction(elemsArray);
                 }
             })
 
+            function checkBoxSelection(tabEl){
+                selectedCount = 0;
+                elems = tabEl._element.parentElement.children;
+                for(let i = 1; i < 6; i++)
+                {
+                    if(elems[i].classList.contains("partner-selected"))
+                    {
+                        selectedCount++
+                    }
+                    else
+                    {
+                    }
+                }
+                if(selectedCount==5)
+                {
+                    tabEl._element.parentElement.children[0].children[0].children[0].checked = true;
+                }
+                else
+                {
+                    tabEl._element.parentElement.children[0].children[0].children[0].checked = false;
+                }
+            }
             function toggleClickFunction(elRow){
                 var elArray = []
                 if(elRow.length == undefined){
@@ -635,13 +733,26 @@ function createPartnerTable() {
                         elArray.push(elRow[i])
                     }
                 }
+                //PICKLIST NO CHECKBOX 
                 for(let i = 0; i < elArray.length; i++){
                     var elClass = elArray[i].className
                     var elTextContent = elArray[i].textContent
                     if(elClass.includes("partner-selected"))
                     {
-                        resTableBody.insertBefore(triggerEl.parentElement, resTableBody.firstChild)
-                        allSelectedArray.push(elTextContent)
+                        resTableBody.insertBefore(triggerEl.parentElement, resTableBody.firstChild);
+                        const count = {};
+                        for (const element of allSelectedArray) {
+                            if(count[element]) {
+                                count[element] += 1;
+                            } else {
+                                count[element] = 1;
+                            }
+                        }
+                        if(count[elTextContent] < 5 || count[elTextContent] == undefined)
+                        {
+                            allSelectedArray.push(elTextContent);
+                        }
+                        
                         if(elClass.includes("partnerColNum0"))
                         {
                             sAArray.push(elTextContent)
@@ -665,13 +776,15 @@ function createPartnerTable() {
                     }
                     else if(!elClass.includes("partner-selected"))
                     {
+                        //console.log(...new Set(allSelectedArray));
                         var uniqueArray = [...new Set(allSelectedArray)]
                         allSelectedArray.splice(allSelectedArray.indexOf(elTextContent),1)
+                        //console.log("ALL Selected Array: " + allSelectedArray);
                         partnerNameArray.unshift(elTextContent)
                         if(elClass.includes("partnerColNum0"))
                         {
-                            var filteredElements = sAArray.filter(val => (val != elTextContent))
-                            sAArray = filteredElements
+                            var filteredElements = sAArray.filter(val => (val != elTextContent));
+                            sAArray = filteredElements;
                         }
                         else if(elClass.includes("partnerColNum1"))
                         {
@@ -696,6 +809,10 @@ function createPartnerTable() {
                         if(!allSelectedArray.includes(elTextContent))
                         {
                             resTableBody.insertBefore(triggerEl.parentElement, resTableBody.children[uniqueArray.length])
+                        }
+                        else
+                        {
+                            //console.log("ALLLLLLL*********: " + allSelectedArray);
                         }
                     }
                     else

@@ -7,33 +7,55 @@
     <link rel="stylesheet" type="text/css" href="css/app.css">
   </head>
   <body>
-    <div class="container">
-      <div class="p-3 text-center partner-title">Partner Picklist</div>
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark navBarContainer">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Sales Approved<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">SBS Selected</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Conference Call Selected</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Site Visit Finalist</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Client Approved</a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0 ml-auto">
+            <input class="form-control ml-auto" type="search" id="tableSearch" placeholder="Search...">
+          </form>
+        </div>
+      </nav>
         <p id="oppId" hidden>OppId</p>
         <p id="salesA" hidden>OppId</p>
         <p id="sbs" hidden>OppId</p>
         <p id="conference" hidden>OppId</p>
         <p id="siteV" hidden>OppId</p>
         <p id="clientA" hidden>OppId</p>
-        <div class="row">
-          <div class="col text-center">
-            <button type="button" class="btn btn-info " onclick="updateButton()">Update Tester</button>
-          </div>
+        <div class="d-flex align-items-center justify-content-center buttonDiv" style="height: 150px;">
+          <button type="button" class="btn btn-info text-center updateButton" onclick="updateButton()">Update Picklists</button>
         </div>
         <div>
-          <div class="container">
-            <input class="form-control mb-4" id="tableSearch" type="text"
-              placeholder="Type something to search list items">
-            <table class="table table-bordered table-striped">
-              <table class="table">
-                <thead>
+          <div class="container-fluid tableContainer">
+            <table class="table table-bordered table-striped topTableClass">
+              <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
                   <tr>
                     <th id="partnerCol5" scope="col">Select All</th>
-                    <th id="partnerCol0" scope="col">Sales Approved Partners</th>
-                    <th id="partnerCol1" scope="col">SBS Selected Partners</th>
-                    <th id="partnerCol2" scope="col">Conference Call Selected Partners</th>
+                    <th id="partnerCol0" scope="col">Sales Approved</th>
+                    <th id="partnerCol1" scope="col">SBS Selected</th>
+                    <th id="partnerCol2" scope="col">Conference Call Selected</th>
                     <th id="partnerCol3" scope="col">Site Visit Selected Finalist</th>
-                    <th id="partnerCol4" scope="col">Client Approved Partner</th>
+                    <th id="partnerCol4" scope="col">Client Approved</th>
                   </tr>
                 </thead>
                 <tbody id="responseTableBody"></tbody>

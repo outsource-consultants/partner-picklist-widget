@@ -825,11 +825,13 @@ function createPartnerTable() {
 }
 
 function updateButton() {
+    var oppId = document.getElementById("oppId").value;
+    console.log(oppId);
 
     var config = {
         Entity:"Deals",
         APIData:{
-            "id" : "1190034000100993270"
+            "id" : oppId
         }
     }
 

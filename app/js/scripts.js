@@ -973,6 +973,7 @@ function updateButton() {
       ZOHO.CRM.API.updateRecord(config)
       .then(function(data){
           console.log(data)
+          console.log("updated the file")
       });
       ZOHO.CRM.UI.Popup.closeReload()
       .then(function(data){

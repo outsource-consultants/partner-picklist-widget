@@ -973,6 +973,7 @@ function updateButton() {
       ZOHO.CRM.API.updateRecord(config)
       .then(function(data){
           console.log(data)
+          alert("Successfully Updated! Refresh your browser to see the updated picklists.")
       });
 }
 

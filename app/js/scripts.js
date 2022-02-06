@@ -974,11 +974,11 @@ function updateButton() {
       .then(function(data){
           console.log(data)
           console.log("updated the file")
-      });
-      ZOHO.CRM.UI.Popup.closeReload()
-      .then(function(data){
-          console.log(data)
-          console.log("triggered close and reload popup")
+          ZOHO.CRM.UI.Popup.closeReload()
+          .then(function(data){
+              console.log(data)
+              console.log("triggered close and reload popup")
+          });
       });
 }
 

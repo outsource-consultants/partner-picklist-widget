@@ -977,6 +977,7 @@ function updateButton() {
       ZOHO.CRM.UI.Popup.closeReload()
       .then(function(data){
           console.log(data)
+          console.log("triggered close and reload popup")
       });
 }
 

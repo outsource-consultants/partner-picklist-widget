@@ -407,7 +407,7 @@ ZOHO.embeddedApp.init();
 
 
 function getPartners() {
-    ZOHO.CRM.API.searchRecord({Entity:"Vendors",Type:"criteria",Query:"(Status:equals:CCCA Executed)",per_page:200,page:pageNumber})
+    ZOHO.CRM.API.searchRecord({Entity:"Vendors",Type:"criteria",Query:"((Status:equals:CCCA Executed)or(Status:equals:Not In Good Standing))",per_page:200,page:pageNumber})
     .then(function(response){
         var allPartnerRecs = response.data;
         allPartnerRecs.forEach(obj => {

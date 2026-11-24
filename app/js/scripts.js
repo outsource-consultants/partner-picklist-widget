@@ -326,6 +326,74 @@ var initialSBSArray = [];
 var initialCCSArray = [];
 var initialSVSFArray = [];
 var initialCAArray = [];
+var initialNotesText = "";
+// Multi-line text field on Deals, 2000 character limit.
+// (Notify_Not_Selected_Partners is a separate checkbox field - not this one.)
+var NOTES_FIELD = "Notes_for_Not_Selected_Partner";
+var NOTES_FIELD_MAX_LENGTH = 2000;
+
+
+//################################################
+//NOTES FOR NOT SELECTED PARTNER HELPERS
+//################################################
+
+// Splits the CRM field into one line per partner (keyed by partner name) plus
+// everything that doesn't start with an exact partner name ("other").
+function parseNotesField(text, names) {
+    var sortedNames = names.slice().sort((a, b) => b.length - a.length);
+    var notes = {};
+    var otherLines = [];
+    (text || "").split(/\r?\n/).forEach(line => {
+        var trimmed = line.trim();
+        var lower = trimmed.toLowerCase();
+        var match = sortedNames.find(name => {
+            if(!name || !lower.startsWith(name.toLowerCase())) return false;
+            var rest = trimmed.slice(name.length);
+            return rest === "" || /^\s*[-–—:]/.test(rest);
+        });
+        if(match && notes[match] === undefined)
+        {
+            notes[match] = trimmed;
+        }
+        else
+        {
+            otherLines.push(trimmed);
+        }
+    });
+    // collapse runs of blank lines and trim blank lines off both ends
+    var other = otherLines.join("\n").replace(/\n{3,}/g, "\n\n").trim();
+    return {notes: notes, other: other};
+}
+
+// Rebuilds the CRM field value: other notes, blank line, then one line per partner.
+function buildNotesField(other, partnerLines) {
+    var cleanOther = (other || "").replace(/\r\n/g, "\n").trim();
+    var cleanLines = partnerLines
+        .map(line => line.replace(/\s*\r?\n\s*/g, " ").trim())
+        .filter(line => line !== "");
+    var parts = [];
+    if(cleanOther !== "") parts.push(cleanOther);
+    if(cleanLines.length > 0) parts.push(cleanLines.join("\n"));
+    return parts.join("\n\n");
+}
+
+// Adds "Partner Name - " for partners in SBS Selected or any later stage,
+// and removes a bare prefix when the partner is no longer in any of them.
+function syncNotePrefix(row) {
+    var input = row.querySelector(".partnerNoteInput");
+    if(!input) return;
+    var name = row.dataset.partner;
+    var inLaterStage = row.querySelector(".partnerColNum1.partner-selected, .partnerColNum2.partner-selected, .partnerColNum3.partner-selected, .partnerColNum4.partner-selected") != null;
+    var current = input.value.trim();
+    if(inLaterStage && current === "")
+    {
+        input.value = name + " - ";
+    }
+    else if(!inLaterStage && current === name + " -")
+    {
+        input.value = "";
+    }
+}
 
 
 //################################################
@@ -343,6 +411,7 @@ ZOHO.embeddedApp.on("PageLoad", entity => {
         dealName = recordData.Deal_Name;
         document.getElementById("oppId").value = recordData.id;
         allRecordData = recordData;
+        initialNotesText = recordData[NOTES_FIELD] || "";
         var salesApproved = recordData.Sales_Approved_Partners;
         var sbsSelected = recordData.Partner_Search_Results;
         var conferenceCallSelected = recordData.Conference_Call_Selected_Partners;
@@ -497,9 +566,12 @@ function createPartnerTable() {
             
         })    
     }
+    var parsedNotes = parseNotesField(initialNotesText, partnerNameArray);
+    document.getElementById("otherNotes").value = parsedNotes.other;
     var resTableBody = document.getElementById("responseTableBody");
     for (let i = 0; i < partnerNameArray.length; i++){
         var newRow = document.createElement("TR");
+        newRow.dataset.partner = partnerNameArray[i];
         var newCheckCol = document.createElement("TH");
         var newCheckDiv = document.createElement("div");
         var newCheck = document.createElement("input");
@@ -547,9 +619,19 @@ function createPartnerTable() {
                 newCheckCol.children[0].children[0].checked = true;
            }
         }
+        // Notes column is a TD (not TH) so it never gets the stage click handler
+        var noteCol = document.createElement("TD");
+        var noteInput = document.createElement("textarea");
+        noteCol.setAttribute("class","partnerNotesCol");
+        noteInput.setAttribute("class","form-control form-control-sm partnerNoteInput");
+        noteInput.setAttribute("rows","1");
+        noteInput.value = parsedNotes.notes[partnerNameArray[i]] || "";
+        noteCol.appendChild(noteInput);
+        newRow.appendChild(noteCol);
+        syncNotePrefix(newRow);
     }
     var partnerList = [].slice.call(document.querySelectorAll('#responseTableBody TH'))
-    
+
     partnerList.forEach(function (triggerEl) {
         var tabTrigger = new bootstrap.Tab(triggerEl)
             triggerEl.addEventListener('click', function (event) {
@@ -698,6 +780,7 @@ function createPartnerTable() {
                     checkBoxSelection(tabTrigger);
                     toggleClickFunction(elemsArray);
                 }
+                syncNotePrefix(triggerEl.parentElement);
             })
 
             function checkBoxSelection(tabEl){
@@ -969,11 +1052,37 @@ function updateButton() {
       {
           console.log("CA: SAMEEE")
       }
+
+      var partnerNoteLines = [].slice.call(document.querySelectorAll("#responseTableBody .partnerNoteInput"))
+          .map(input => input.value);
+      var newNotesText = buildNotesField(document.getElementById("otherNotes").value, partnerNoteLines);
+      if(newNotesText.length > NOTES_FIELD_MAX_LENGTH)
+      {
+          alert("Notes for Not Selected Partner is " + newNotesText.length + " characters, but the CRM field only holds " + NOTES_FIELD_MAX_LENGTH + ". Shorten the notes and try again. Nothing was saved.")
+          return;
+      }
+      if(newNotesText !== initialNotesText.replace(/\r\n/g, "\n").trim())
+      {
+          config.APIData[NOTES_FIELD] = newNotesText
+      }
+      else
+      {
+          console.log("NOTES: SAMEEE")
+      }
+
       console.log(config)
       ZOHO.CRM.API.updateRecord(config)
       .then(function(data){
           console.log(data)
-          alert("Successfully Updated! Refresh your browser to see the updated picklists.")
+          var result = data && data.data && data.data[0];
+          if(result && result.code == "SUCCESS")
+          {
+              alert("Successfully Updated! Refresh your browser to see the updated picklists.")
+          }
+          else
+          {
+              alert("Update failed: " + (result && result.message ? result.message : "unknown error") + ". Nothing was saved - check the console for details.")
+          }
       });
 }
 
@@ -990,6 +1099,10 @@ $(document).ready(function(){
         {
             $(this)[0].parentElement.getElementsByClassName("partnerColNum5")[0].style = 'display'
         }
+      });
+      $("#responseTableBody tr").each(function() {
+        var rowMatches = (this.dataset.partner || "").toLowerCase().indexOf(value) > -1;
+        $(this).find(".partnerNotesCol").toggle(rowMatches);
       });
     });
 });

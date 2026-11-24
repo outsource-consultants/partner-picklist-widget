@@ -44,6 +44,10 @@
         <div class="d-flex align-items-center justify-content-center buttonDiv" style="height: 150px;">
           <button type="button" class="btn btn-info text-center updateButton" onclick="updateButton()">Update Picklists</button>
         </div>
+        <div class="otherNotesDiv">
+          <label for="otherNotes">Other notes <small>(lines in Notes for Not Selected Partner that don't match a partner name)</small></label>
+          <textarea id="otherNotes" class="form-control" rows="3"></textarea>
+        </div>
         <div>
           <div class="container-fluid tableContainer">
             <table class="table table-bordered table-striped topTableClass">
@@ -56,6 +60,7 @@
                     <th id="partnerCol2" scope="col">Conference Call Selected</th>
                     <th id="partnerCol3" scope="col">Down Selected Finalists</th>
                     <th id="partnerCol4" scope="col">Client Approved</th>
+                    <th id="partnerNotesCol" scope="col">Notes for Not Selected Partner</th>
                   </tr>
                 </thead>
                 <tbody id="responseTableBody"></tbody>

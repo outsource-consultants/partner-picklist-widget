@@ -84,6 +84,20 @@
     opacity: 1 !important;
 }
 
+.otherNotesDiv {
+    padding: 0 15px 15px 15px;
+}
+
+.partnerNotesCol {
+    min-width: 280px;
+    padding: 6px !important;
+}
+
+.partnerNoteInput {
+    min-height: 31px;
+    resize: vertical;
+}
+
 .label-text {
     position: relative;
     left: 10px;
